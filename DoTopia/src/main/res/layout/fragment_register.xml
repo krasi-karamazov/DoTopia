@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/et_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/vertical_margin"
+            android:background="@drawable/edit_text_background"
+            android:hint="@string/username_hint"/>
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/vertical_margin"
+            android:background="@drawable/edit_text_background"
+            android:inputType="textEmailAddress"
+            android:hint="@string/email_hint"/>
+
+        <EditText
+            android:id="@+id/et_zip_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/vertical_margin"
+            android:background="@drawable/edit_text_background"
+            android:inputType="textEmailAddress"
+            android:hint="@string/zip_code_hint"/>
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:layout_marginBottom="@dimen/vertical_margin"
+            android:background="@drawable/edit_text_background"
+            android:hint="@string/password_hint"/>
+
+        <EditText
+            android:id="@+id/et_confirm_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:layout_marginBottom="@dimen/vertical_margin"
+            android:background="@drawable/edit_text_background"
+            android:hint="@string/confirm_password_hint"/>
+
+        <com.augeo.dotopia.ui.views.DoTopiaShadowButton
+            android:id="@+id/but_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:text="@string/register"
+            app:text_size="10sp"/>
+    </LinearLayout>
+
+</ScrollView>

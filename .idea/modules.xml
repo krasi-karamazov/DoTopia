@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/DoTopia.iml" filepath="$PROJECT_DIR$/DoTopia.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DoTopia/DoTopia-DoTopia.iml" filepath="$PROJECT_DIR$/DoTopia/DoTopia-DoTopia.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DoTopia/libs/library/library.iml" filepath="$PROJECT_DIR$/DoTopia/libs/library/library.iml" />
+    </modules>
+  </component>
+</project>
+

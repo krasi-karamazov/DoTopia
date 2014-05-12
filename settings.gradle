@@ -1,0 +1,2 @@
+include ':DoTopia', ':library'
+project(':library').projectDir = new File('DoTopia/libs/library')

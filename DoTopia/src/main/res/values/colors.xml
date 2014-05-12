@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="dotopia_orange">#f15c22</color>
+    <color name="dotopia_light_blue">#00b3e6</color>
+    <color name="dotopia_grey_text_color">#636363</color>
+    <color name="dotopia_grey_color">#c2c2c2</color>
+
+    <color name="dotopia_light_grey">#f5f3f4</color>
+    <color name="dotopia_black">#000000</color>
+    <color name="dotopia_white">#ffffff</color>
+
+    <!-- grey button -->
+    <color name="grey_button_primary">#c2c2c2</color>
+    <color name="grey_button_secondary">#85928a</color>
+    <color name="grey_button_pressed">#85928a</color>
+
+
+    <!-- orange button -->
+    <color name="orange_button_primary">#f15c22</color>
+    <color name="orange_button_secondary">#a44519</color>
+    <color name="orange_button_pressed">#85928a</color>
+
+</resources>

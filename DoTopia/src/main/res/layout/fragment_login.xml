@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+        <EditText
+            android:id="@+id/et_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/vertical_margin"
+            android:background="@drawable/edit_text_background"
+            android:hint="@string/username_hint"/>
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:layout_marginBottom="@dimen/vertical_margin"
+            android:background="@drawable/edit_text_background"
+            android:hint="@string/password_hint"/>
+
+        <com.augeo.dotopia.ui.views.DoTopiaShadowButton
+            android:id="@+id/but_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:text="@string/login"
+            app:text_size="10sp"/>
+
+        <TextView
+            android:id="@+id/tv_register_today"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="@color/dotopia_orange"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/vertical_margin"
+            android:text="@string/register_today"/>
+    </LinearLayout>
+
+</RelativeLayout>

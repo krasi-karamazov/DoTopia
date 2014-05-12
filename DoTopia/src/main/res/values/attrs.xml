@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CircularImageView">
+        <attr name="border" format="boolean"></attr>
+        <attr name="border_width" format="integer"></attr>
+        <attr name="border_color" format="color"></attr>
+        <attr name="shadow" format="boolean"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="CircularTheme">
+        <attr name="circularImageViewStyle" format="reference"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="ShadowButton">
+        <attr name="primary_color" format="color"></attr>
+        <attr name="secondary_color" format="color"></attr>
+        <attr name="pressed_color" format="color"></attr>
+        <attr name="text" format="string"></attr>
+        <attr name="text_size" format="dimension"></attr>
+        <attr name="text_color" format="dimension"></attr>
+        <attr name="button_top_bottom_padding" format="dimension"></attr>
+        <attr name="enabled" format="boolean"></attr>
+        <attr name="disabled_primary_color" format="color"></attr>
+        <attr name="disabled_secondary_color" format="color"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="ShadowButtonTheme">
+        <attr name="shadowbuttontheme" format="reference"></attr>
+    </declare-styleable>
+</resources>
