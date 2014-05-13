@@ -15,7 +15,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.augeo.dotopia.R;
 import com.augeo.dotopia.models.SlidingMenuItemModel;
+import com.augeo.dotopia.ui.RoundedTransformation;
 import com.augeo.dotopia.ui.views.CircularImageView;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +35,7 @@ public class MenuExpandableAdapter extends BaseExpandableListAdapter {
     }
 
     static class ModelHolder{
-        CircularImageView imgView;
+        ImageView imgView;
         TextView txtView;
     }
 
@@ -79,15 +81,26 @@ public class MenuExpandableAdapter extends BaseExpandableListAdapter {
         if (groupRow == null) {
             groupRow = LayoutInflater.from(mContext).inflate(R.layout.layout_list_item_group, parent, false);
             holder = new ModelHolder();
-            holder.imgView = (CircularImageView)groupRow.findViewById(R.id.iv_item_icon);
+            holder.imgView = (ImageView)groupRow.findViewById(R.id.iv_item_icon);
             holder.txtView = (TextView)groupRow.findViewById(R.id.lblListHeader);
             groupRow.setTag(holder);
         }
         holder = (ModelHolder)groupRow.getTag();
         SlidingMenuItemModel model = (SlidingMenuItemModel)getGroup(groupPosition);
 
-        holder.imgView.setImageBitmap(model.getIcon());
-        TextView lblListHeader = (TextView) groupRow.findViewById(R.id.lblListHeader);
+        if(model.getIsUser()) {
+            Picasso.with(mContext)
+                    .load(R.drawable.pic)
+                    .transform(new RoundedTransformation((int)mContext.getResources().getDimension(R.dimen.menu_icon_size)))
+                    .into(holder.imgView);
+        }else{
+            if(model.getIcon() != SlidingMenuItemModel.NO_ICON){
+                Picasso.with(mContext)
+                        .load(model.getIcon())
+                        .into(holder.imgView);
+            }
+        }
+        TextView lblListHeader = holder.txtView;
         String modelLabel = model.getLabel();
         lblListHeader.setText((!TextUtils.isEmpty(modelLabel))?model.getLabel().toUpperCase():"");
 

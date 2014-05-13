@@ -3,7 +3,9 @@ package com.augeo.dotopia.ui.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,7 +46,10 @@ public class LoginFragment extends BaseFragment {
     @Override
     protected void initUI(View rootView) {
         mUserNameET = (EditText)rootView.findViewById(R.id.et_user_name);
+        mUserNameET.setOnEditorActionListener(getOnEditorActionListener());
         mPasswordET = (EditText)rootView.findViewById(R.id.et_password);
+        mPasswordET.setOnEditorActionListener(getOnEditorActionListener());
+
         mLoginButton = (DoTopiaShadowButton)rootView.findViewById(R.id.but_login);
         mLoginButton.setOnClickListener(getOnClickListener());
 
@@ -60,6 +65,22 @@ public class LoginFragment extends BaseFragment {
         rootView.findViewById(R.id.tv_register_today).setOnClickListener(getOnClickListener());
 
         setupValidation();
+    }
+
+    private TextView.OnEditorActionListener getOnEditorActionListener() {
+        return new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                if(textView.getId() == mUserNameET.getId()){
+                    mPasswordET.requestFocus();
+                    return true;
+                }else if(textView.getId() == mPasswordET.getId()) {
+                    performLogin();
+                    return true;
+                }
+                return false;
+            }
+        };
     }
 
     private void setupValidation() {
@@ -81,16 +102,20 @@ public class LoginFragment extends BaseFragment {
                         BusProvider.getInstance().post(new NavigationEvent(RegisterFragment.getInstance(null)));
                         break;
                     case R.id.but_login:
-                        if(mForm.isValid()){
-                            Toast.makeText(getActivity(), "Login", Toast.LENGTH_LONG).show();
-                            final Intent intent = new Intent(getActivity(), MainActivity.class);
-                            startActivity(intent);
-                            getActivity().finish();
-                        }
+                        performLogin();
                         break;
                 }
             }
         };
+    }
+
+    private void performLogin(){
+        if(mForm.isValid()){
+            Toast.makeText(getActivity(), "Login", Toast.LENGTH_LONG).show();
+            final Intent intent = new Intent(getActivity(), MainActivity.class);
+            startActivity(intent);
+            getActivity().finish();
+        }
     }
 
     @Override

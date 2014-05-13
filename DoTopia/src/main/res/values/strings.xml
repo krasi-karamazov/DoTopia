@@ -43,4 +43,17 @@
     <string name="privacy_policy">Privacy Policy</string>
     <string name="terms_of_service">Terms of service</string>
     <string name="logout">Logout</string>
+    <string name="buy_upper">BUY</string>
+    <string name="contact_us"><u>Contact us ></u></string>
+    <string name="redeem_upper">REDEEM</string>
+    <string name="gift_upper">GIFT</string>
+    <string name="give_upper">GIVE</string>
+    <string name="account_upper">ACCOUNT</string>
+    <string name="search_for_non_profit_label">SEARCH FOR NON-PROFIT</string>
+    <string name="org_name">Organization Name</string>
+    <string name="ein_label">EIN</string>
+    <string name="city_label">City</string>
+    <string name="state_label">State</string>
+    <string name="search_label">Search</string>
+    <string name="loading_screen_label">This App contains 10MB of joy</string>
 </resources>

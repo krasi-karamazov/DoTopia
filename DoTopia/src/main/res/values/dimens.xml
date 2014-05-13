@@ -6,6 +6,9 @@
     <dimen name="list_padding">10dp</dimen>
     <dimen name="shadow_width">15dp</dimen>
 
+    <dimen name="menu_icon_size">40dp</dimen>
+    <dimen name="home_icon_size">55dp</dimen>
+
     <integer name="num_cols">1</integer>
 
     <dimen name="vertical_margin">10dp</dimen>

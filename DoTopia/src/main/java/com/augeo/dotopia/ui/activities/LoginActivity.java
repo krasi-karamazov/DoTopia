@@ -1,13 +1,27 @@
 package com.augeo.dotopia.ui.activities;
 
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
+
 import com.augeo.dotopia.R;
+import com.augeo.dotopia.models.DeviceClientObject;
 import com.augeo.dotopia.navigation.events.NavigationEvent;
+import com.augeo.dotopia.models.AuthenticationToken;
+import com.augeo.dotopia.networking.RestServiceCreator;
 import com.augeo.dotopia.ui.fragments.LoginFragment;
+import com.augeo.dotopia.ui.fragments.ProgressFragment;
 import com.augeo.dotopia.util.BusProvider;
+import com.augeo.dotopia.util.Constants;
+import com.augeo.dotopia.util.DoTopiaLog;
 import com.squareup.otto.Subscribe;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * Created by krasimir.karamazov on 4/30/2014.
@@ -18,7 +32,38 @@ public class LoginActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        onNavigationEvent(new NavigationEvent(LoginFragment.getInstance(null)));
+        final SharedPreferences prefs = getSharedPreferences(Constants.SHARED_PREFS_NAME, MODE_PRIVATE);
+        if(!prefs.contains(DeviceClientObject.CLIENT_ID_PREFS_KEY)){
+            DoTopiaLog.d("need to register");
+            onNavigationEvent(new NavigationEvent(ProgressFragment.getInstance(null)));
+            getSupportActionBar().hide();
+            registerDevice(prefs);
+        }else{
+            DoTopiaLog.d("Already registered - login");
+            onNavigationEvent(new NavigationEvent(LoginFragment.getInstance(null)));
+        }
+    }
+
+    private void registerDevice(final SharedPreferences prefs) {
+        String deviceID = Settings.Secure.getString(this.getContentResolver(),Settings.Secure.ANDROID_ID);
+        String deviceName = Build.MANUFACTURER + " " + Build.MODEL;
+        RestServiceCreator.createLoginRegisterService().registerDevice(deviceID, deviceName, "android", new Callback<DeviceClientObject>() {
+            @Override
+            public void success(DeviceClientObject deviceClientObject, Response response) {
+                DoTopiaLog.d("Device registered successfully");
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString(DeviceClientObject.CLIENT_ID_PREFS_KEY, deviceClientObject.getClientId());
+                editor.putString(DeviceClientObject.CLIENT_SECRET_PREFS_KEY, deviceClientObject.getClientSecret());
+                editor.commit();
+                getSupportActionBar().show();
+                onNavigationEvent(new NavigationEvent(LoginFragment.getInstance(null)));
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                DoTopiaLog.d(error.getMessage());
+            }
+        });
     }
 
     @Override

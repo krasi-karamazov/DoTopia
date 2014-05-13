@@ -9,13 +9,13 @@
     <FrameLayout
         android:id="@+id/fl_icon_container"
         android:layout_centerVertical="true"
-        android:layout_width="60dp"
-        android:layout_height="60dp">
-        <com.augeo.dotopia.ui.views.CircularImageView
+        android:layout_width="@dimen/menu_icon_size"
+        android:layout_height="@dimen/menu_icon_size">
+        <ImageView
             android:id="@+id/iv_item_icon"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerInside"/>
+            android:scaleType="fitCenter"/>
     </FrameLayout>
 
 

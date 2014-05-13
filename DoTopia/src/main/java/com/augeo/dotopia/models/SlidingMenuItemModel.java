@@ -7,7 +7,7 @@ import android.graphics.Bitmap;
  */
 public class SlidingMenuItemModel {
     public static final int NO_ICON = -1;
-    private Bitmap mIcon;
+    private int mIcon;
     private String mLabel;
     private boolean mIsUser;
 
@@ -15,17 +15,17 @@ public class SlidingMenuItemModel {
 
     }
 
-    public SlidingMenuItemModel(Bitmap icon, String label, boolean isUser) {
+    public SlidingMenuItemModel(int icon, String label, boolean isUser) {
         mIcon = icon;
         mLabel = label;
         mIsUser = isUser;
     }
 
-    public void setIconId(Bitmap icon) {
+    public void setIconId(int icon) {
         mIcon = icon;
     }
 
-    public Bitmap getIcon() {
+    public int getIcon() {
         return mIcon;
     }
 

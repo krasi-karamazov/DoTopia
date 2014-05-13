@@ -4,17 +4,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_main_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/vertical_margin"
+        android:scaleType="centerInside"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_centerInParent="true">
+
         <EditText
             android:id="@+id/et_user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/vertical_margin"
+            android:singleLine="true"
             android:background="@drawable/edit_text_background"
+            android:imeActionLabel="Next"
+            android:imeOptions="actionNext"
             android:hint="@string/username_hint"/>
 
         <EditText
@@ -23,7 +35,10 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:layout_marginBottom="@dimen/vertical_margin"
+            android:maxLines="1"
             android:background="@drawable/edit_text_background"
+            android:imeActionLabel="Login"
+            android:imeOptions="actionGo"
             android:hint="@string/password_hint"/>
 
         <com.augeo.dotopia.ui.views.DoTopiaShadowButton
