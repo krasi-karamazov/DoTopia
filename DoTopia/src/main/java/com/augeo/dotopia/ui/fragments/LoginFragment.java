@@ -1,6 +1,9 @@
 package com.augeo.dotopia.ui.fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -11,14 +14,28 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.augeo.dotopia.R;
+import com.augeo.dotopia.models.AuthenticationToken;
+import com.augeo.dotopia.models.DeviceClientObject;
 import com.augeo.dotopia.navigation.events.NavigationEvent;
+import com.augeo.dotopia.networking.RestServiceCreator;
 import com.augeo.dotopia.ui.activities.MainActivity;
+import com.augeo.dotopia.ui.fragments.dialogs.BaseDialog;
+import com.augeo.dotopia.ui.fragments.dialogs.ProgressDialog;
 import com.augeo.dotopia.ui.views.DoTopiaShadowButton;
 import com.augeo.dotopia.util.BusProvider;
+import com.augeo.dotopia.util.Constants;
+import com.augeo.dotopia.util.DataHolder;
+import com.augeo.dotopia.util.DoTopiaLog;
 import com.augeo.dotopia.util.validation.AbstractValidationUnit;
 import com.augeo.dotopia.util.validation.Form;
 import com.augeo.dotopia.util.validation.ValidationUnitImlp;
 import com.augeo.dotopia.util.validation.validators.EmptyValidator;
+
+import java.net.URLEncoder;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * Created by krasimir.karamazov on 4/30/2014.
@@ -46,9 +63,14 @@ public class LoginFragment extends BaseFragment {
     @Override
     protected void initUI(View rootView) {
         mUserNameET = (EditText)rootView.findViewById(R.id.et_user_name);
+
         mUserNameET.setOnEditorActionListener(getOnEditorActionListener());
         mPasswordET = (EditText)rootView.findViewById(R.id.et_password);
         mPasswordET.setOnEditorActionListener(getOnEditorActionListener());
+        if(Constants.NO_REGISTER) {
+            mUserNameET.setText("vvassilev@augeomarketing.com");
+            mPasswordET.setText("test123");
+        }
 
         mLoginButton = (DoTopiaShadowButton)rootView.findViewById(R.id.but_login);
         mLoginButton.setOnClickListener(getOnClickListener());
@@ -111,10 +133,50 @@ public class LoginFragment extends BaseFragment {
 
     private void performLogin(){
         if(mForm.isValid()){
-            Toast.makeText(getActivity(), "Login", Toast.LENGTH_LONG).show();
-            final Intent intent = new Intent(getActivity(), MainActivity.class);
-            startActivity(intent);
-            getActivity().finish();
+            final SharedPreferences prefs = getActivity().getSharedPreferences(Constants.SHARED_PREFS_NAME, Context.MODE_PRIVATE);
+            String clientId = prefs.getString(DeviceClientObject.CLIENT_ID_PREFS_KEY, "");
+            String clientSecret = prefs.getString(DeviceClientObject.CLIENT_SECRET_PREFS_KEY, "");
+            if(Constants.NO_REGISTER) {
+                clientId = "f501a1df4c664f3f9db967daaada3463";
+                clientSecret = "4e92a0174558469aae88f3426555163c";
+            }
+            if(TextUtils.isEmpty(clientId) || TextUtils.isEmpty(clientSecret)) {
+                Toast.makeText(getActivity(), R.string.cannot_login_error, Toast.LENGTH_SHORT).show();
+                return;
+            }
+            showProgressDialog();
+
+
+            RestServiceCreator.createLoginRegisterService().getToken("password", clientId, clientSecret, mUserNameET.getText().toString(), mPasswordET.getText().toString(), new Callback<AuthenticationToken>() {
+                @Override
+                public void success(AuthenticationToken authenticationToken, Response response) {
+                    DataHolder.getInstance().setAuthToken(authenticationToken);
+                    hideProgressDialog();
+                    final Intent intent = new Intent(getActivity(), MainActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
+                }
+
+                @Override
+                public void failure(RetrofitError retrofitError) {
+                    Toast.makeText(getActivity(), retrofitError.getResponse().getReason(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
+    private void showProgressDialog() {
+        Bundle args = new Bundle();
+        args.putString(BaseDialog.MESSAGE_ARG_KEY, getString(R.string.loging_in_label));
+        BaseDialog progressDialog = ProgressDialog.getInstance(args);
+        progressDialog.show(getActivity().getSupportFragmentManager(), ProgressDialog.TAG);
+    }
+
+    private void hideProgressDialog() {
+        BaseDialog dialog = (ProgressDialog)getActivity().getSupportFragmentManager().findFragmentByTag(ProgressDialog.TAG);
+        if(dialog != null) {
+            DoTopiaLog.d("Dialog dismissed");
+            dialog.dismiss();
         }
     }
 

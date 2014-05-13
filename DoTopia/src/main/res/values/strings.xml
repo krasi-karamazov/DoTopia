@@ -56,4 +56,6 @@
     <string name="state_label">State</string>
     <string name="search_label">Search</string>
     <string name="loading_screen_label">This App contains 10MB of joy</string>
+    <string name="cannot_login_error">Cannot Login</string>
+    <string name="loging_in_label">Logging in...</string>
 </resources>

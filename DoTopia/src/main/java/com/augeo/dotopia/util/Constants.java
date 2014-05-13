@@ -8,6 +8,8 @@ public class Constants {
     public static final String SHARED_PREFS_NAME = "dotopiaprefs";
 
     public static boolean DEBUG = true;
+    public static boolean NO_REGISTER = true;
 
-    public static final String ENDPOINT = (DEBUG)?"http://intapi.dotopia.com":"";
+    public static final String ENDPOINT = (DEBUG)?"https://intapi.dotopia.com":"";
 }
+
