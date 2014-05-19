@@ -8,10 +8,25 @@ import com.augeo.dotopia.util.Constants;
 import com.augeo.dotopia.util.DoTopiaGSon;
 import com.squareup.okhttp.OkHttpClient;
 
+import org.apache.http.HttpVersion;
+import org.apache.http.client.HttpClient;
+import org.apache.http.conn.ClientConnectionManager;
+import org.apache.http.conn.scheme.PlainSocketFactory;
+import org.apache.http.conn.scheme.Scheme;
+import org.apache.http.conn.scheme.SchemeRegistry;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpParams;
+import org.apache.http.params.HttpProtocolParams;
+import org.apache.http.protocol.HTTP;
+
+import java.security.KeyStore;
 import java.util.concurrent.TimeUnit;
 
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
+import retrofit.client.ApacheClient;
 import retrofit.client.OkClient;
 import retrofit.converter.GsonConverter;
 
@@ -25,9 +40,7 @@ public class RestServiceCreator {
     private static RestAdapter getRestAdapter() {
 
         if (adapter == null) {
-            OkHttpClient client = new OkHttpClient();
-            client.setConnectTimeout(15, TimeUnit.SECONDS);
-            client.setReadTimeout(15, TimeUnit.SECONDS);
+
 
             RestAdapter.Builder adapterBuilder = new RestAdapter.Builder()
                     .setEndpoint(Constants.ENDPOINT)
@@ -41,7 +54,7 @@ public class RestServiceCreator {
                             }
                         }
                     })
-                    .setClient(new OkClient(client));
+                    .setClient(new DoTopiaApacheClient(getNewHttpClient()));
             if (Constants.DEBUG) {
                 adapterBuilder.setLog(new RestAdapter.Log() {
                     @Override public void log(String s) {
@@ -59,5 +72,29 @@ public class RestServiceCreator {
 
     public static LoginRegisterService createLoginRegisterService(){
         return getRestAdapter().create(LoginRegisterService.class);
+    }
+
+    private static HttpClient getNewHttpClient() {
+        try {
+            KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
+            trustStore.load(null, null);
+
+            SSLSocketFactory sf = new SSLSocketFactory(trustStore);
+            sf.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+
+            HttpParams params = new BasicHttpParams();
+            HttpProtocolParams.setVersion(params, HttpVersion.HTTP_1_1);
+            HttpProtocolParams.setContentCharset(params, HTTP.UTF_8);
+
+            SchemeRegistry registry = new SchemeRegistry();
+            registry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
+            registry.register(new Scheme("https", sf, 443));
+
+            ClientConnectionManager ccm = new ThreadSafeClientConnManager(params, registry);
+
+            return new DefaultHttpClient(ccm, params);
+        } catch (Exception e) {
+            return new DefaultHttpClient();
+        }
     }
 }
