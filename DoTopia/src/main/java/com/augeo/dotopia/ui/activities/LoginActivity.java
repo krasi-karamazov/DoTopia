@@ -92,6 +92,5 @@ public class LoginActivity extends ActionBarActivity {
         }else{
             finish();
         }
-
     }
 }

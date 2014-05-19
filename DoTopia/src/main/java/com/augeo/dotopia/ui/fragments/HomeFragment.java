@@ -54,7 +54,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 intent.putExtra(Intent.EXTRA_EMAIL, new String[]{Constants.DOTOPIA_CONTACT_EMAIL});
                 startActivity(Intent.createChooser(intent, "Send"));
                 break;
-            case R.id.gift_container:
+            case R.id.give_container:
                 BusProvider.getInstance().post(new NavigationEvent(GiveFragment.getInstance(null)));
                 break;
         }

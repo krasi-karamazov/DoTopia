@@ -111,10 +111,10 @@ public class LoginFragment extends BaseFragment {
 
     private void performLogin(){
         if(mForm.isValid()){
-            Toast.makeText(getActivity(), "Login", Toast.LENGTH_LONG).show();
-            final Intent intent = new Intent(getActivity(), MainActivity.class);
-            startActivity(intent);
-            getActivity().finish();
+            //Toast.makeText(getActivity(), "Login", Toast.LENGTH_LONG).show();
+            //final Intent intent = new Intent(getActivity(), MainActivity.class);
+            //startActivity(intent);
+            //getActivity().finish();
         }
     }
 

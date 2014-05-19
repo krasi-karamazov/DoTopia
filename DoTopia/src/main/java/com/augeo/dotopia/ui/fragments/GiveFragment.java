@@ -1,7 +1,9 @@
 package com.augeo.dotopia.ui.fragments;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
 
 import com.augeo.dotopia.R;
 
@@ -20,7 +22,21 @@ public class GiveFragment extends BaseFragment {
 
     @Override
     protected void initUI(View rootView) {
+        final EditText etSearchTerm = (EditText)rootView.findViewById(R.id.et_organization_name);
+        rootView.findViewById(R.id.but_login).setOnClickListener(getOnClickListener(etSearchTerm));
+    }
 
+    private View.OnClickListener getOnClickListener(final EditText field) {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final String searchTerm = field.getText().toString();
+
+                if(!TextUtils.isEmpty(searchTerm)) {
+
+                }
+            }
+        };
     }
 
     @Override
