@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:fillViewport="true"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/content_padding">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <CheckBox android:id="@+id/cb_star"
+                style="?android:attr/starStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <LinearLayout
+                android:id="@+id/ll_info_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/cb_star"
+                android:layout_alignParentRight="true"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tv_cause_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textColor="@color/dotopia_orange"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="TITLE"/>
+
+                <TextView
+                    android:id="@+id/tv_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:text="TITLE"/>
+                <TextView
+                    android:id="@+id/tv_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:text="TITLE"/>
+                <TextView
+                    android:id="@+id/tv_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:text="TITLE"/>
+            </LinearLayout>
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/dotopia_grey_color"/>
+
+        <EditText
+            android:id="@+id/tv_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text_background"
+            android:drawableLeft="@drawable/ic_buy"
+            android:inputType="number"
+            android:hint="@string/dodolar_amount"/>
+        
+        <EditText
+            android:id="@+id/tv_message"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/big_edit_text_rect"
+            android:gravity="top|left"
+            android:hint="@string/type_a_message_here"/>
+        
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/send_anonimously"/>
+
+        <TextView
+            android:id="@+id/tv_give"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/dotopia_orange"
+            android:layout_marginTop="30dp"
+            android:text="@string/give_now_upper"
+            android:textSize="20sp"/>
+    </LinearLayout>
+
+
+</ScrollView>

@@ -1,12 +1,18 @@
 package com.augeo.dotopia.ui.activities;
 
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.augeo.dotopia.R;
+import com.augeo.dotopia.navigation.NavigationDrawerController;
 import com.augeo.dotopia.navigation.SlidingMenuController;
 import com.augeo.dotopia.navigation.events.NavigationEvent;
 import com.augeo.dotopia.ui.fragments.HomeFragment;
@@ -15,12 +21,12 @@ import com.squareup.otto.Subscribe;
 
 public class MainActivity extends ActionBarActivity {
 
-    private SlidingMenuController mController;
+    private NavigationDrawerController mController;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mController = SlidingMenuController.getInstance();
+        mController = NavigationDrawerController.getInstance();
         mController.attach(this);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -29,6 +35,28 @@ public class MainActivity extends ActionBarActivity {
             ft.replace(R.id.fl_fragment_container, HomeFragment.getInstance(null), HomeFragment.TAG);
             ft.commit();
         }
+    }
+
+    public void hideSoftKeyboard() {
+        if(getCurrentFocus()!=null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mController.getDrawerToggle().syncState();
+    }
+
+    /**
+     * Shows the soft keyboard
+     */
+    public void showSoftKeyboard(View view) {
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        view.requestFocus();
+        inputMethodManager.showSoftInput(view, 0);
     }
 
     @Override
@@ -52,10 +80,8 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
-            case android.R.id.home:
-                mController.toggleMenu();
-                break;
+        if (mController.getDrawerToggle().onOptionsItemSelected(item)) {
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

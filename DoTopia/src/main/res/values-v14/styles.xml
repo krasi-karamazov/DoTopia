@@ -22,6 +22,7 @@
     <style name="Theme.Dotopia" parent="@style/Theme.AppCompat.Light">
         <item name="android:actionBarItemBackground">@drawable/selectable_background_dotopia</item>
         <item name="android:popupMenuStyle">@style/PopupMenu.Dotopia</item>
+
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Dotopia</item>
         <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Dotopia</item>
         <item name="android:actionDropDownStyle">@style/DropDownNav.Dotopia</item>
@@ -32,11 +33,17 @@
         <item name="android:editTextStyle">@style/Dotopia.EditText</item>
     </style>
 
+    <!--<style name="Dotopia.ActionBar.TitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/dotopia_orange</item>
+    </style>-->
+
+
     <style name="Dotopia.EditText" parent="@android:style/Widget.EditText">
         <item name="background">@drawable/edit_text_background</item>
     </style>
 
     <style name="ActionBar.Solid.Dotopia" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
+        <item name="android:titleTextStyle">@style/Dotopia.ActionBar.TitleTextStyle</item>
         <item name="android:background">@drawable/ab_solid_dotopia</item>
         <item name="android:backgroundStacked">@drawable/ab_stacked_solid_dotopia</item>
         <item name="android:backgroundSplit">@drawable/ab_bottom_solid_dotopia</item>

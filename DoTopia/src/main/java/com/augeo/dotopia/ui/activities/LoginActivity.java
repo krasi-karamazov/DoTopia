@@ -33,6 +33,8 @@ public class LoginActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         final SharedPreferences prefs = getSharedPreferences(Constants.SHARED_PREFS_NAME, MODE_PRIVATE);
+
+
         if(!prefs.contains(DeviceClientObject.CLIENT_ID_PREFS_KEY)){
             DoTopiaLog.d("need to register");
             onNavigationEvent(new NavigationEvent(ProgressFragment.getInstance(null)));
@@ -40,7 +42,12 @@ public class LoginActivity extends ActionBarActivity {
             registerDevice(prefs);
         }else{
             DoTopiaLog.d("Already registered - login");
-            onNavigationEvent(new NavigationEvent(LoginFragment.getInstance(null)));
+            Bundle args = null;
+            if(prefs.contains(Constants.SHARED_PREFS_REGISTERED_MAIL_KEY)){
+                args = new Bundle();
+                args.putString(Constants.SHARED_PREFS_REGISTERED_MAIL_KEY, prefs.getString(Constants.SHARED_PREFS_REGISTERED_MAIL_KEY, ""));
+            }
+            onNavigationEvent(new NavigationEvent(LoginFragment.getInstance(args)));
         }
     }
 

@@ -48,9 +48,11 @@
     <string name="redeem_upper">REDEEM</string>
     <string name="gift_upper">GIFT</string>
     <string name="give_upper">GIVE</string>
+    <string name="give_now_upper">GIVE NOW></string>
     <string name="account_upper">ACCOUNT</string>
     <string name="search_for_non_profit_label">SEARCH FOR NON-PROFIT</string>
     <string name="org_name">Organization Name</string>
+    <string name="search_hint">Enter Keyword, State, or Label</string>
     <string name="ein_label">EIN</string>
     <string name="city_label">City</string>
     <string name="state_label">State</string>
@@ -58,4 +60,23 @@
     <string name="loading_screen_label">This App contains 10MB of joy</string>
     <string name="cannot_login_error">Cannot Login</string>
     <string name="loging_in_label">Logging in...</string>
+
+    <string name="please_wait">Please wait...</string>
+    <string name="search">Search</string>
+    <string name="dodolar_amount">DoDollar Amount</string>
+    <string name="type_a_message_here">type a message here...</string>
+    <string name="send_anonimously">Send anonymously</string>
+    <string name="open_drawer">Open Drawer</string>
+    <string name="close_drawer">Close Drawer</string>
+    <string name="confirmation_upper">CONFIRMATION</string>
+    <string name="an_email_will_be_sent">An email will be sent to</string>
+    <string name="within_tf_hours">within 24 hours</string>
+    <string name="tell_your_friends">Tell your friends!</string>
+    <string name="quote_start">I just gave</string>
+    <string name="quote_end">\nDownload DoTopia so you can give too!</string>
+    <string name="amount_missing_error_string">Please select an amount to give.</string>
+    <string name="balance">Balance</string>
+    <string name="given_this_year">Given this year</string>
+    <string name="given_last_year">Given last yeasr</string>
+    <string name="total_given">Total given</string>
 </resources>

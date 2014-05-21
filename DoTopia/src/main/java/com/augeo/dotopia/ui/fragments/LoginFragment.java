@@ -42,9 +42,6 @@ import retrofit.client.Response;
  */
 public class LoginFragment extends BaseFragment {
 
-    public static final String USERNAME_ARGS_KEY = "username";
-    public static final String PASSWORD_ARGS_KEY = "password";
-
 
     private static final String TAG = LoginFragment.class.getSimpleName();
 
@@ -76,12 +73,8 @@ public class LoginFragment extends BaseFragment {
         mLoginButton.setOnClickListener(getOnClickListener());
 
         if(getArguments() != null) {
-            if(!TextUtils.isEmpty(getArguments().getString(USERNAME_ARGS_KEY))){
-                mUserNameET.setText(getArguments().getString(USERNAME_ARGS_KEY));
-            }
-
-            if(!TextUtils.isEmpty(getArguments().getString(PASSWORD_ARGS_KEY))) {
-                mPasswordET.setText(getArguments().getString(PASSWORD_ARGS_KEY));
+            if(!TextUtils.isEmpty(getArguments().getString(Constants.SHARED_PREFS_REGISTERED_MAIL_KEY))){
+                mUserNameET.setText(getArguments().getString(Constants.SHARED_PREFS_REGISTERED_MAIL_KEY));
             }
         }
         rootView.findViewById(R.id.tv_register_today).setOnClickListener(getOnClickListener());
@@ -133,12 +126,6 @@ public class LoginFragment extends BaseFragment {
 
     private void performLogin(){
         if(mForm.isValid()){
-<<<<<<< HEAD
-            //Toast.makeText(getActivity(), "Login", Toast.LENGTH_LONG).show();
-            //final Intent intent = new Intent(getActivity(), MainActivity.class);
-            //startActivity(intent);
-            //getActivity().finish();
-=======
             final SharedPreferences prefs = getActivity().getSharedPreferences(Constants.SHARED_PREFS_NAME, Context.MODE_PRIVATE);
             String clientId = prefs.getString(DeviceClientObject.CLIENT_ID_PREFS_KEY, "");
             String clientSecret = prefs.getString(DeviceClientObject.CLIENT_SECRET_PREFS_KEY, "");
@@ -153,9 +140,13 @@ public class LoginFragment extends BaseFragment {
             showProgressDialog();
 
 
-            RestServiceCreator.createLoginRegisterService().getToken("password", clientId, clientSecret, mUserNameET.getText().toString(), mPasswordET.getText().toString(), new Callback<AuthenticationToken>() {
+            RestServiceCreator.createLoginRegisterService().getTokenAsUser("password", clientId, clientSecret, mUserNameET.getText().toString(), mPasswordET.getText().toString(), new Callback<AuthenticationToken>() {
                 @Override
                 public void success(AuthenticationToken authenticationToken, Response response) {
+                    String regEmail = mUserNameET.getText().toString();
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putString(Constants.SHARED_PREFS_REGISTERED_MAIL_KEY, regEmail);
+                    editor.commit();
                     DataHolder.getInstance().setAuthToken(authenticationToken);
                     hideProgressDialog();
                     final Intent intent = new Intent(getActivity(), MainActivity.class);
@@ -183,7 +174,6 @@ public class LoginFragment extends BaseFragment {
         if(dialog != null) {
             DoTopiaLog.d("Dialog dismissed");
             dialog.dismiss();
->>>>>>> 2c609a26b8ef81d42ec9c0c850ddcd11bbc842ba
         }
     }
 

@@ -97,6 +97,7 @@ public class MenuExpandableAdapter extends BaseExpandableListAdapter {
             if(model.getIcon() != SlidingMenuItemModel.NO_ICON){
                 Picasso.with(mContext)
                         .load(model.getIcon())
+                        .resize((int)mContext.getResources().getDimension(R.dimen.menu_icon_size), (int)mContext.getResources().getDimension(R.dimen.menu_icon_size))
                         .into(holder.imgView);
             }
         }

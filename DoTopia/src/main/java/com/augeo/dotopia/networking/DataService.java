@@ -1,17 +1,19 @@
 package com.augeo.dotopia.networking;
 
-import com.augeo.dotopia.models.DeviceClientObject;
-
+import com.augeo.dotopia.models.CauseModel;
 import retrofit.Callback;
-import retrofit.http.Field;
-import retrofit.http.FormUrlEncoded;
-import retrofit.http.POST;
+import retrofit.http.GET;
+import retrofit.http.Header;
+import retrofit.http.Query;
 
 /**
  * Created by krasimir.karamazov on 5/19/2014.
  */
 public interface DataService {
-    @FormUrlEncoded
-    @POST("/o/oauth/RegisterClient")
-    public void registerDevice(@Field("token") String token, @Field("name") String name, @Field("devicetype") String deviceType, Callback<DeviceClientObject> callback);
+
+    @GET("/r/cause/search")
+    public void getCauses(@Header("Content-Type") String contentType, @Header("Authorization")String authorization,  @Query("searchTerm") String searchTerm, Callback<CauseModel> callback);
+
+    @GET("/r/user/fullhistory")
+    public void getHistory(@Header("Content-Type") String contentType, @Header("Authorization")String authorization, Callback<CauseModel> callback);
 }

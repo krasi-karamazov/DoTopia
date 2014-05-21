@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/content_padding">
+    <TextView
+        android:id="@+id/tv_confirmation_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/confirmation_upper"
+        android:textColor="@color/dotopia_grey_text_color"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/tv_confirmation_subtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_confirmation_title"
+        android:text="@string/an_email_will_be_sent"
+        android:textColor="@color/dotopia_grey_text_color"
+        android:layout_centerHorizontal="true"
+        android:textSize="13sp"/>
+
+    <TextView
+        android:id="@+id/tv_recipient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_confirmation_subtext"
+        android:layout_marginTop="20dp"
+        android:text="1000 friends"
+        android:textColor="@color/dotopia_grey_text_color"
+        android:textStyle="bold"
+        android:textSize="15sp"/>
+    <TextView
+        android:id="@+id/tv_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_recipient"
+        android:drawableLeft="@drawable/ic_buy"
+        android:gravity="center_vertical"
+        android:textColor="@color/dotopia_grey_text_color"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="50"/>
+
+    <TextView
+        android:id="@+id/tv_tell_friends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/tv_amount"
+        android:text="@string/tell_your_friends"
+        android:textColor="@color/dotopia_grey_text_color"
+        android:textSize="14sp"/>
+    <TextView
+        android:id="@+id/tv_quote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_tell_friends"
+        android:text="@string/quote_start"
+        android:textColor="@color/dotopia_grey_text_color"
+        android:layout_marginTop="5dp"
+        android:textSize="13sp"/>
+</RelativeLayout>

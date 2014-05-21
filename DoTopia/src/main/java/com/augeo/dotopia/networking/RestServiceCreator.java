@@ -74,6 +74,10 @@ public class RestServiceCreator {
         return getRestAdapter().create(LoginRegisterService.class);
     }
 
+    public static DataService createDataServiceService(){
+        return getRestAdapter().create(DataService.class);
+    }
+
     private static HttpClient getNewHttpClient() {
         try {
             KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());

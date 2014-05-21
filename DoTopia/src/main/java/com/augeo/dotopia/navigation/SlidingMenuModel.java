@@ -1,25 +1,18 @@
 package com.augeo.dotopia.navigation;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-
 import com.augeo.dotopia.R;
 import com.augeo.dotopia.models.SlidingMenuItemModel;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * Created by krasimir.karamazov on 4/30/2014.
  */
 public class SlidingMenuModel {
 
-    private static SlidingMenuModel sInstance;
     private Map<SlidingMenuItemModel, List<SlidingMenuItemModel>> listDataChild;
     private Context mApplicationContext;
     public SlidingMenuModel(Context context){

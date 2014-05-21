@@ -14,6 +14,8 @@ public class AuthenticationToken {
     private String expiresIn;
     @SerializedName("refresh_token")
     private String refreshToken;
+    @SerializedName("scope")
+    private String scope;
 
     public String getAccessToken() {
         return accessToken;
@@ -29,5 +31,9 @@ public class AuthenticationToken {
 
     public String getRefreshToken() {
         return refreshToken;
+    }
+
+    public String getScope() {
+        return scope;
     }
 }

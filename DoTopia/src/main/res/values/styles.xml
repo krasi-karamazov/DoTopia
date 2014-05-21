@@ -33,12 +33,17 @@
         
     </style>
 
+    <style name="Dotopia.ActionBar.TitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/dotopia_orange</item>
+    </style>
+
     <style name="Dotopia.EditText" parent="@android:style/Widget.EditText">
         <item name="background">@drawable/edit_text_background</item>
     </style>
 
     <style name="ActionBar.Solid.Dotopia" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
         <item name="background">@drawable/ab_solid_dotopia</item>
+        <item name="titleTextStyle">@style/Dotopia.ActionBar.TitleTextStyle</item>
         <item name="backgroundStacked">@drawable/ab_stacked_solid_dotopia</item>
         <item name="backgroundSplit">@drawable/ab_bottom_solid_dotopia</item>
         <item name="progressBarStyle">@style/ProgressBar.Dotopia</item>

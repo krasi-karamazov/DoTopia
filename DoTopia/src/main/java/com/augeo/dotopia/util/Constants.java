@@ -6,9 +6,11 @@ package com.augeo.dotopia.util;
 public class Constants {
     public static final String DOTOPIA_CONTACT_EMAIL = "dotopia@dotopia.com";
     public static final String SHARED_PREFS_NAME = "dotopiaprefs";
+    public static final String SHARED_PREFS_REGISTERED_MAIL_KEY = "registered_mail";
 
     public static boolean DEBUG = true;
-    public static boolean NO_REGISTER = true;
+    public static boolean NO_REGISTER = false;
+    public static String CONTENT_TYPE = "application/json";
 
     public static final String ENDPOINT = (DEBUG)?"https://intapi.dotopia.com":"";
 }

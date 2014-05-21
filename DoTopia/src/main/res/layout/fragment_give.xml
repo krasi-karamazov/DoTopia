@@ -3,7 +3,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/content_padding">
     <TextView
         android:id="@+id/tv_header"
         android:layout_width="wrap_content"
@@ -15,51 +16,21 @@
         android:textColor="@color/dotopia_black"/>
 
     <EditText
-        android:id="@+id/et_organization_name"
+        android:id="@+id/et_search_term_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_header"
         android:layout_marginBottom="@dimen/vertical_margin"
-        android:hint="@string/org_name"
+        android:hint="@string/search_hint"
         android:singleLine="true"
-        android:background="@drawable/edit_text_background"/>
-    <EditText
-        android:id="@+id/et_ein"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/et_organization_name"
-        android:layout_marginTop="@dimen/vertical_margin"
-        android:layout_marginBottom="@dimen/vertical_margin"
-        android:hint="@string/ein_label"
-        android:background="@drawable/edit_text_background"/>
-
-    <EditText
-        android:id="@+id/et_city"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/et_ein"
-        android:layout_marginTop="@dimen/vertical_margin"
-        android:layout_marginBottom="@dimen/vertical_margin"
-        android:hint="@string/city_label"
-        android:singleLine="true"
-        android:background="@drawable/edit_text_background"/>
-
-    <EditText
-        android:id="@+id/et_state"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/et_city"
-        android:layout_marginTop="@dimen/vertical_margin"
-        android:layout_marginBottom="@dimen/vertical_margin"
-        android:hint="@string/state_label"
-        android:singleLine="true"
+        android:imeActionLabel="@string/search"
         android:background="@drawable/edit_text_background"/>
 
     <com.augeo.dotopia.ui.views.DoTopiaShadowButton
         android:id="@+id/but_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/et_state"
+        android:layout_below="@+id/et_search_term_field"
         android:layout_marginTop="@dimen/vertical_margin"
         app:text="@string/search_label"
         app:text_size="10sp"/>

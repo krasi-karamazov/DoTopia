@@ -3,9 +3,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="20dp"
-    android:paddingBottom="@dimen/vertical_margin"
-    android:paddingTop="@dimen/vertical_margin">
+    android:paddingLeft="@dimen/content_padding"
+    android:paddingBottom="@dimen/vertical_margin">
     <ImageView
         android:id="@+id/logo"
         android:layout_width="match_parent"
@@ -41,7 +40,9 @@
             <LinearLayout
                 android:id="@+id/user_container"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/home_icon_size">
+                android:layout_height="@dimen/home_icon_size"
+                android:layout_marginTop="@dimen/menu_icon_padding"
+                android:layout_marginBottom="@dimen/menu_icon_padding">
                 <FrameLayout
                     android:id="@+id/fl_icon_container"
                     android:layout_gravity="center_vertical"
@@ -70,7 +71,9 @@
                 android:id="@+id/give_container"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/home_icon_size"
-                android:layout_gravity="center_vertical">
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/menu_icon_padding"
+                android:layout_marginBottom="@dimen/menu_icon_padding">
                 <FrameLayout
                     android:layout_width="@dimen/home_icon_size"
                     android:layout_height="@dimen/home_icon_size">
@@ -97,7 +100,9 @@
                 android:id="@+id/gift_container"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/home_icon_size"
-                android:layout_gravity="center_vertical">
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/menu_icon_padding"
+                android:layout_marginBottom="@dimen/menu_icon_padding">
                 <FrameLayout
                     android:layout_width="@dimen/home_icon_size"
                     android:layout_height="@dimen/home_icon_size">
@@ -124,7 +129,9 @@
                 android:id="@+id/redeem_container"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/home_icon_size"
-                android:layout_gravity="center_vertical">
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/menu_icon_padding"
+                android:layout_marginBottom="@dimen/menu_icon_padding">
                 <FrameLayout
                     android:layout_width="@dimen/home_icon_size"
                     android:layout_height="@dimen/home_icon_size">
@@ -151,7 +158,9 @@
                 android:id="@+id/buy_container"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/home_icon_size"
-                android:layout_gravity="center_vertical">
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/menu_icon_padding"
+                android:layout_marginBottom="@dimen/menu_icon_padding">
                 <FrameLayout
                     android:layout_width="@dimen/home_icon_size"
                     android:layout_height="@dimen/home_icon_size">
