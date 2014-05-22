@@ -157,6 +157,7 @@ public class LoginFragment extends BaseFragment {
                 @Override
                 public void failure(RetrofitError retrofitError) {
                     Toast.makeText(getActivity(), retrofitError.getResponse().getReason(), Toast.LENGTH_SHORT).show();
+                    hideProgressDialog();
                 }
             });
         }

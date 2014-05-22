@@ -18,9 +18,9 @@ public class HistoryModel implements Serializable {
     @SerializedName("Date")
     private String date;
     @SerializedName("Amount")
-    private int amount;
+    private double amount;
     @SerializedName("IsPanding")
-    private int isPending;
+    private boolean isPending;
 
 
     public int getId() {
@@ -39,11 +39,11 @@ public class HistoryModel implements Serializable {
         return date;
     }
 
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public int getIsPending() {
+    public boolean getIsPending() {
         return isPending;
     }
 }

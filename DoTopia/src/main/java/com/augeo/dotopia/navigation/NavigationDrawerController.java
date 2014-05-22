@@ -15,6 +15,7 @@ import com.augeo.dotopia.R;
 import com.augeo.dotopia.adapters.MenuExpandableAdapter;
 import com.augeo.dotopia.navigation.events.NavigationEvent;
 import com.augeo.dotopia.ui.fragments.GiveFragment;
+import com.augeo.dotopia.ui.fragments.HistoryFragment;
 import com.augeo.dotopia.util.BusProvider;
 
 /**
@@ -88,6 +89,7 @@ public class NavigationDrawerController {
         return new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView expandableListView, View view, int groupPosition, int childPosition, long l) {
+                toggleDrawer();
                 switch(groupPosition){
                     case 0:
                         switch(childPosition){
@@ -98,7 +100,7 @@ public class NavigationDrawerController {
                                 Log.d("DoTopia", "Community");
                                 break;
                             case 2:
-                                Log.d("DoTopia", "History");
+                                BusProvider.getInstance().post(new NavigationEvent(HistoryFragment.getInstance(null)));
                                 break;
                             case 3:
                                 Log.d("DoTopia", "Favorites");

@@ -79,4 +79,6 @@
     <string name="given_this_year">Given this year</string>
     <string name="given_last_year">Given last yeasr</string>
     <string name="total_given">Total given</string>
+    <string name="pending">Pending</string>
+    <string name="search_title">Search</string>
 </resources>

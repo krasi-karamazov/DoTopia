@@ -149,7 +149,9 @@ public class RegisterFragment extends BaseFragment {
                     RestServiceCreator.createLoginRegisterService().registerUser(Constants.CONTENT_TYPE, "Bearer " + authenticationToken.getAccessToken(), body, new Callback<DeviceClientObject>() {
                         @Override
                         public void success(DeviceClientObject deviceClientObject, Response response) {
-                            DoTopiaLog.d("MSG");
+                            final Intent intent = new Intent(getActivity(), MainActivity.class);
+                            startActivity(intent);
+                            getActivity().finish();
                         }
 
                         @Override
@@ -157,9 +159,7 @@ public class RegisterFragment extends BaseFragment {
                             DoTopiaLog.d("MSG");
                         }
                     });
-                    //final Intent intent = new Intent(getActivity(), MainActivity.class);
-                    //startActivity(intent);
-                    //getActivity().finish();
+
                 }
 
                 @Override
